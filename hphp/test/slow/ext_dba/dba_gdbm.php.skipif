@@ -1,0 +1,4 @@
+<?php 
+	$handler = 'gdbm';
+	require_once dirname(__FILE__) .'/skipif.inc';
+?>

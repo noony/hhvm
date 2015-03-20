@@ -1,0 +1,3 @@
+database handler: %s
+
+Catchable fatal error: dba_insert(): Key does not have exactly two elements: (key, name) in %sdba014.php on line %d

@@ -1,0 +1,4 @@
+<?php 
+	$handler = 'cdb_make';
+	require_once dirname(__FILE__) .'/skipif.inc';
+?>

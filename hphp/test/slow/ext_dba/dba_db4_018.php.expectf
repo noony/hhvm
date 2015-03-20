@@ -1,0 +1,18 @@
+database handler: db4
+Test 1
+This is a test insert 1
+Test 2
+resources are different
+Test 3 - fetch both rows from second resource
+This is a test insert 1
+This is a test insert 2
+Test 4 - fetch both rows from first resource
+This is a test insert 1
+This is a test insert 2
+Test 5 - close 2nd resource
+resource(%d) of type (dba persistent)
+resource(%d) of type (Unknown)
+Test 6 - query after closing 2nd resource
+This is a test insert 1
+This is a test insert 2
+===DONE===

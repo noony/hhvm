@@ -1,0 +1,5 @@
+resource(%d) of type (dba persistent)
+string(3) "XYZ"
+string(1) "X"
+string(1) "Y"
+===DONE===

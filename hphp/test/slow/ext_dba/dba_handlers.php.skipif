@@ -1,0 +1,5 @@
+<?php 
+$handler="flatfile";
+require(dirname(__FILE__) .'/skipif.inc');
+die("info $HND handler used");
+?>
