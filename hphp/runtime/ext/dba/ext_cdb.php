@@ -60,11 +60,6 @@ function dba_open(string $path , string $mode, string $handler = '', ...$argv): 
 <<__Native>>
 function dba_optimize(resource $handle): bool;
 
-/* Optimize database.
- */
-<<__Native>>
-function dba_optimize(resource $handle): bool;
-
 /* Open database persistently.
  */
 <<__Native>>
