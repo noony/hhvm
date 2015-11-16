@@ -384,6 +384,9 @@ public:
   static int64_t HeapLowWaterMark;
   static int64_t HeapHighWaterMark;
 
+  static int64_t Precision;
+  static int64_t SerializePrecision;
+
   static int GetScannerType();
 
   static std::set<std::string, stdltistr> DynamicInvokeFunctions;
