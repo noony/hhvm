@@ -32,8 +32,31 @@
 namespace HPHP {
 
 ///////////////////////////////////////////////////////////////////////////////
+// engines
 
-Variant HHVM_FUNCTION(exif_imagetype, const String& filename) {
+static DbaEngineMap DbaEngines;
+using DbaEnginePtr = std::shared_ptr<DbaEngine>;
+
+class DbaEngineMapInitializer {
+public:
+  DbaEngineMapInitializer() {
+    DbaEngines["dbm"] = DbaEnginePtr(new hash_md2());
+    DbaEngines["ndbm"] = DbaEnginePtr(new hash_md2());
+    DbaEngines["gdbm"] = DbaEnginePtr(new hash_md2());
+    // TODO db2, db3, db4
+    DbaEngines["cdb"] = DbaEnginePtr(new hash_md2());
+    DbaEngines["cdb_make"] = DbaEnginePtr(new hash_md2());
+    DbaEngines["flatfile"] = DbaEnginePtr(new hash_md2());
+    DbaEngines["inifile"] = DbaEnginePtr(new hash_md2());
+    DbaEngines["qdbm"] = DbaEnginePtr(new hash_md2());
+  }
+};
+
+static HashEngineMapInitializer s_engine_initializer;
+
+///////////////////////////////////////////////////////////////////////////////
+
+Variant HHVM_FUNCTION(dba_open, const String& path, const String mode, ) {
   auto stream = File::Open(filename, "rb");
   if (!stream) {
     raise_warning("failed to open file: %s", filename.c_str());
