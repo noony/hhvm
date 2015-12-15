@@ -18,12 +18,12 @@
 
 #include "hphp/runtime/base/builtin-functions.h"
 #include "hphp/runtime/base/comparisons.h"
-#include "hphp/runtime/base/runtime-option.h"
 #include "hphp/runtime/base/type-conversions.h"
 #include "hphp/runtime/base/variable-serializer.h"
 #include "hphp/runtime/base/zend-functions.h"
 #include "hphp/runtime/base/zend-string.h"
 #include "hphp/runtime/base/zend-printf.h"
+#include "hphp/runtime/base/ini-setting.h"
 
 #include <algorithm>
 
@@ -128,7 +128,10 @@ String::String(int64_t n) : m_str(buildString(n)) { }
 
 void formatPhpDblStr(char **pbuf, double n) {
   if (n == 0.0) n = 0.0; // so to avoid "-0" output
-  vspprintf(pbuf, 0, "%.*G", RuntimeOption::Precision, n);
+  String precisionStr;
+  IniSetting::Get("precision", precisionStr);
+  int64_t const precision = precisionStr.toInt64();
+  vspprintf(pbuf, 0, "%.*G", precision, n);
 }
 
 StringData* buildStringData(double n) {

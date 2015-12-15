@@ -323,6 +323,9 @@ private:
   int64_t m_maxMemoryNumeric;
   int64_t m_zendAssertions;
 
+  int64_t m_Precision;
+  int64_t m_SerializePrecision;
+
   /*
    * Keep track of the open_basedir_separator that may be used so we can
    * have backwards compatibility with our current ;.

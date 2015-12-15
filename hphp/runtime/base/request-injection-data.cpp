@@ -517,6 +517,36 @@ void RequestInjectionData::threadInit() {
         return m_zendAssertions;
       }
     ));
+
+  // Precision
+  IniSetting::Bind(IniSetting::CORE, IniSetting::PHP_INI_ALL,
+    "precision", "14",
+    IniSetting::SetAndGet<int64_t>(
+      [this](const int64_t& value) {
+        if ((value <=0)) {
+          return false;
+        }
+        m_Precision = value;
+        return true;
+      },
+      [this]() {
+        return m_Precision;
+      }
+    ));
+  IniSetting::Bind(IniSetting::CORE, IniSetting::PHP_INI_ALL,
+    "serialize_precision", "17",
+    IniSetting::SetAndGet<int64_t>(
+      [this](const int64_t& value) {
+        if ((value <=0)) {
+          return false;
+        }
+        m_SerializePrecision = value;
+        return true;
+      },
+      [this]() {
+        return m_SerializePrecision;
+      }
+    ));
 }
 
 std::string RequestInjectionData::getDefaultIncludePath() {

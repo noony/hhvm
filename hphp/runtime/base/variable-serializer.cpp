@@ -26,6 +26,7 @@
 #include "hphp/runtime/base/array-iterator.h"
 #include "hphp/runtime/base/request-local.h"
 #include "hphp/runtime/base/utf8-decode.h"
+#include "hphp/runtime/base/ini-setting.h"
 #include "hphp/runtime/ext/json/JSON_parser.h"
 #include "hphp/runtime/ext/json/ext_json.h"
 #include "hphp/runtime/ext/collections/ext_collections-idl.h"
@@ -269,8 +270,12 @@ void VariableSerializer::write(int64_t v) {
 }
 
 void VariableSerializer::write(double v) {
-  auto const precision = RuntimeOption::Precision;
-  auto const serde_precision = RuntimeOption::SerializePrecision;
+  String precisionStr, serde_precisionStr;
+  IniSetting::Get("precision", precisionStr);
+  IniSetting::Get("serialize_precision", serde_precisionStr);
+
+  int64_t const precision = precisionStr.toInt64();
+  int64_t const serde_precision = serde_precisionStr.toInt64();
 
   switch (m_type) {
   case Type::JSON:
