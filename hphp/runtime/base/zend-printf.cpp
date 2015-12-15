@@ -1190,7 +1190,8 @@ static int xbuf_format_converter(char **outbuf, const char *fmt, va_list ap)
           break;
         case 'p': {
             char __next = *(fmt+1);
-            if ('d' == __next || 'u' == __next || 'x' == __next || 'o' == __next) {
+            if ('d' == __next || 'u' == __next ||
+                'x' == __next || 'o' == __next) {
               fmt++;
               modifier = LM_PHP_INT_T;
             } else {
