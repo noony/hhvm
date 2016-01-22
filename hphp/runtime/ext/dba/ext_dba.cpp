@@ -56,7 +56,7 @@ static HashEngineMapInitializer s_engine_initializer;
 
 ///////////////////////////////////////////////////////////////////////////////
 
-Variant HHVM_FUNCTION(dba_open, const String& path, const String mode, ) {
+Variant HHVM_FUNCTION(dba_open, const String& path, const String mode, const String handler, const Array& args) {
   auto stream = File::Open(filename, "rb");
   if (!stream) {
     raise_warning("failed to open file: %s", filename.c_str());
